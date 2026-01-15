@@ -61,13 +61,29 @@ music/
 
 ## 安装与运行
 
-### 1. 安装依赖
+### 快速启动（推荐）
+
+```bash
+# 1. 安装依赖
+pip install -r requirements.txt
+
+# 2. 一键启动（自动运行数据处理和启动服务）
+./start.sh
+# 或
+bash start.sh
+```
+
+然后在浏览器中访问: http://localhost:5001
+
+### 分步运行
+
+#### 1. 安装依赖
 
 ```bash
 pip install -r requirements.txt
 ```
 
-### 2. 运行完整流程
+#### 2. 运行完整流程
 
 ```bash
 python run.py
@@ -79,13 +95,13 @@ python run.py
 - 机器学习模型训练
 - 结果存储
 
-### 3. 启动可视化大屏
+#### 3. 启动可视化大屏
 
 ```bash
 python app.py
 ```
 
-然后在浏览器中访问: http://localhost:5000
+然后在浏览器中访问: http://localhost:5001
 
 ## 机器学习模块详解
 
