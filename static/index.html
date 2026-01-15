@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yambda Music Behavior Analysis Dashboard</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Header - Row 1 -->
+        <div class="header">
+            <h1>基于 Yambda 用户音乐行为日志的多事件行为分析与机器学习系统</h1>
+            <div class="timestamp" id="timestamp">--</div>
+        </div>
+        
+        <!-- Overview Cards - Row 2 -->
+        <div class="card overview-total">
+            <div class="card-title">
+                <div class="metric-value" id="total-events">0</div>
+                <div class="metric-label">总事件数 / Total Events</div>
+            </div>
+            <div class="card-content"></div>
+        </div>
+        
+        <div class="card overview-users">
+            <div class="card-title">
+                <div class="metric-value" id="unique-users">0</div>
+                <div class="metric-label">独立用户数 / Unique Users</div>
+            </div>
+            <div class="card-content"></div>
+        </div>
+        
+        <div class="card overview-tracks">
+            <div class="card-title">
+                <div class="metric-value" id="unique-tracks">0</div>
+                <div class="metric-label">独立曲目数 / Unique Tracks</div>
+            </div>
+            <div class="card-content"></div>
+        </div>
+        
+        <div class="card overview-completion">
+            <div class="card-title">
+                <div class="metric-value" id="avg-completion">0%</div>
+                <div class="metric-label">平均播放完成率 / Avg Completion Rate</div>
+            </div>
+            <div class="card-content"></div>
+        </div>
+        
+        <!-- Event & Completion Distribution - Row 3 & 4 -->
+        <div class="card event-distribution clickable">
+            <div class="card-title">
+                事件类型分布 / Event Type Distribution
+            </div>
+            <div class="card-content">
+                <div id="event-chart" class="chart-container"></div>
+            </div>
+        </div>
+        
+        <div class="card completion-distribution clickable">
+            <div class="card-title">
+                播放完成率分布 / Completion Rate Distribution
+            </div>
+            <div class="card-content">
+                <div id="completion-chart" class="chart-container"></div>
+            </div>
+        </div>
+        
+        <!-- Clustering Results - Row 3 & 4 -->
+        <div class="card cluster-analysis clickable">
+            <div class="card-title">
+                歌曲聚类分析 (KMeans) / Song Clustering Analysis
+            </div>
+            <div class="card-content">
+                <div id="cluster-chart" class="chart-container"></div>
+            </div>
+        </div>
+        
+        <div class="card cluster-distribution clickable">
+            <div class="card-title">
+                聚类分布 / Cluster Distribution
+            </div>
+            <div class="card-content">
+                <div id="cluster-dist-chart" class="chart-container"></div>
+            </div>
+        </div>
+        
+        <!-- Prediction & Anomaly - Row 5 -->
+        <div class="card prediction-metrics">
+            <div class="card-title">
+                播放完成率预测指标 / Prediction Metrics
+            </div>
+            <div class="card-content">
+                <div class="loading">Loading...</div>
+            </div>
+        </div>
+        
+        <div class="card feature-importance">
+            <div class="card-title">
+                特征重要性 (RandomForest) / Feature Importance
+            </div>
+            <div class="card-content">
+                <div id="feature-chart" class="chart-container"></div>
+            </div>
+        </div>
+        
+        <div class="card anomaly-detection">
+            <div class="card-title">
+                异常用户检测 (Isolation Forest) / Anomaly Detection
+            </div>
+            <div class="card-content">
+                <div id="anomaly-chart" class="chart-container"></div>
+            </div>
+        </div>
+        
+        <!-- Footer - Row 6 -->
+        <div class="footer">
+            Yambda Music Recommendation Dataset Analysis | Data Science & Machine Learning Project | 2024
+        </div>
+    </div>
+    
+    <!-- Modal Overlay -->
+    <div class="modal-overlay" id="modalOverlay"></div>
+    
+    <script src="/static/js/dashboard-simple.js"></script>
+</body>
+</html>
