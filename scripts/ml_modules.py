@@ -156,29 +156,33 @@ class CompletionRatePredictor:
         listen_events = self.multi_event[self.multi_event['event_type'] == 'listen'].copy()
         
         # Merge with user features
+        user_features_renamed = self.user_features[['uid', 'avg_completion_rate', 'like_ratio', 'behavior_diversity']].copy()
+        user_features_renamed.columns = ['uid', 'user_avg_completion_rate', 'user_like_ratio', 'behavior_diversity']
+        
         data = listen_events.merge(
-            self.user_features[['uid', 'avg_completion_rate', 'like_ratio', 'behavior_diversity']],
+            user_features_renamed,
             on='uid',
-            how='left',
-            suffixes=('', '_user')
+            how='left'
         )
         
         # Merge with track features
+        track_features_renamed = self.track_features[['item_id', 'avg_completion_rate', 'like_ratio']].copy()
+        track_features_renamed.columns = ['item_id', 'track_avg_completion_rate', 'track_like_ratio']
+        
         data = data.merge(
-            self.track_features[['item_id', 'avg_completion_rate', 'like_ratio']],
+            track_features_renamed,
             on='item_id',
-            how='left',
-            suffixes=('', '_track')
+            how='left'
         )
         
         # Basic features
         feature_columns = [
             'track_length_seconds',
-            'avg_completion_rate_user',
-            'like_ratio_user',
+            'user_avg_completion_rate',
+            'user_like_ratio',
             'behavior_diversity',
-            'avg_completion_rate_track',
-            'like_ratio_track'
+            'track_avg_completion_rate',
+            'track_like_ratio'
         ]
         
         # Add embedding features if available
@@ -438,6 +442,9 @@ if __name__ == '__main__':
     user_features = pd.read_sql('SELECT * FROM user_features', conn)
     track_features = pd.read_sql('SELECT * FROM track_features', conn)
     conn.close()
+    
+    # Convert timestamp to datetime
+    multi_event['timestamp'] = pd.to_datetime(multi_event['timestamp'])
     
     # Load embeddings
     embeddings = pd.read_parquet('data/embeddings.parquet')

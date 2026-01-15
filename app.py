@@ -387,5 +387,5 @@ if __name__ == '__main__':
         exit(1)
     
     print("Starting Flask server...")
-    print("Dashboard available at: http://localhost:5000")
-    app.run(debug=True, host='0.0.0.0', port=5000)
+    print("Dashboard available at: http://localhost:5001")
+    app.run(debug=True, host='0.0.0.0', port=5001)
