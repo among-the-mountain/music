@@ -280,6 +280,53 @@ async function initDashboard() {
         loadFeatureImportance(),
         loadAnomalyDetection()
     ]);
+    
+    // Setup click-to-enlarge functionality
+    setupClickToEnlarge();
+}
+
+// Click-to-enlarge functionality for middle 4 containers
+function setupClickToEnlarge() {
+    const clickableCards = document.querySelectorAll('.card.clickable');
+    const modalOverlay = document.getElementById('modalOverlay');
+    
+    clickableCards.forEach(card => {
+        card.addEventListener('click', function() {
+            // Toggle enlarged state
+            if (this.classList.contains('enlarged')) {
+                // Close modal
+                this.classList.remove('enlarged');
+                modalOverlay.classList.remove('active');
+            } else {
+                // Close any other enlarged cards first
+                document.querySelectorAll('.card.enlarged').forEach(c => {
+                    c.classList.remove('enlarged');
+                });
+                
+                // Open this card
+                this.classList.add('enlarged');
+                modalOverlay.classList.add('active');
+            }
+        });
+    });
+    
+    // Close on overlay click
+    modalOverlay.addEventListener('click', function() {
+        document.querySelectorAll('.card.enlarged').forEach(card => {
+            card.classList.remove('enlarged');
+        });
+        modalOverlay.classList.remove('active');
+    });
+    
+    // Close on Escape key
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+            document.querySelectorAll('.card.enlarged').forEach(card => {
+                card.classList.remove('enlarged');
+            });
+            modalOverlay.classList.remove('active');
+        }
+    });
 }
 
 // Start when DOM is ready

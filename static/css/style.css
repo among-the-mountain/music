@@ -131,30 +131,37 @@ body {
     animation-delay: 0.4s;
 }
 
-/* Row 3 - Event & Completion Distribution */
+/* Row 3 & 4 - Middle 4 containers in 4x1 horizontal layout */
 .event-distribution {
-    grid-column: 1 / 7;
-    grid-row: 3;
+    grid-column: 1 / 4;
+    grid-row: 3 / 5;
     animation-delay: 0.5s;
+    cursor: pointer;
+    transition: all 0.3s ease;
 }
 
 .completion-distribution {
-    grid-column: 7 / 13;
-    grid-row: 3;
+    grid-column: 4 / 7;
+    grid-row: 3 / 5;
     animation-delay: 0.6s;
+    cursor: pointer;
+    transition: all 0.3s ease;
 }
 
-/* Row 4 - Clustering Results */
 .cluster-analysis {
-    grid-column: 1 / 7;
-    grid-row: 4;
+    grid-column: 7 / 10;
+    grid-row: 3 / 5;
     animation-delay: 0.7s;
+    cursor: pointer;
+    transition: all 0.3s ease;
 }
 
 .cluster-distribution {
-    grid-column: 7 / 13;
-    grid-row: 4;
+    grid-column: 10 / 13;
+    grid-row: 3 / 5;
     animation-delay: 0.8s;
+    cursor: pointer;
+    transition: all 0.3s ease;
 }
 
 /* Row 5 - Prediction & Anomaly */
@@ -187,6 +194,43 @@ body {
     border: 1px solid #8a8380;
     color: #ffffff;
     font-size: 12px;
+}
+
+/* Modal Overlay */
+.modal-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 999;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.modal-overlay.active {
+    display: block;
+    opacity: 1;
+}
+
+/* Enlarged Card */
+.card.enlarged {
+    position: fixed;
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    width: 90vw !important;
+    height: 90vh !important;
+    z-index: 1000;
+    grid-column: unset !important;
+    grid-row: unset !important;
+    cursor: pointer;
+}
+
+.card.clickable:hover {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 /* Chart Container */
@@ -239,4 +283,47 @@ body {
     font-size: 12px;
     color: #8a8380;
     margin-top: 4px;
+}
+
+/* Responsive Design - Media Queries */
+@media screen and (max-width: 1400px) {
+    .dashboard-container {
+        grid-template-rows: 3fr 8fr 8fr 8fr 8fr 1.5fr;
+    }
+    
+    .header h1 {
+        font-size: 22px;
+    }
+    
+    .card-title {
+        font-size: 14px;
+    }
+}
+
+@media screen and (min-width: 1920px) {
+    .dashboard-container {
+        grid-template-rows: 4fr 11fr 11fr 11fr 11fr 2.5fr;
+    }
+    
+    .header h1 {
+        font-size: 32px;
+    }
+}
+
+/* Ensure single-screen display */
+@media screen and (max-height: 800px) {
+    .dashboard-container {
+        grid-template-rows: 2.5fr 7fr 7fr 7fr 7fr 1.5fr;
+        gap: 8px;
+        padding: 8px;
+    }
+    
+    .card {
+        padding: 12px;
+    }
+    
+    .card-title {
+        font-size: 13px;
+        margin-bottom: 8px;
+    }
 }
