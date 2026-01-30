@@ -6,3 +6,4 @@ pyarrow==14.0.1
 datasets==2.15.0
 huggingface-hub==0.19.4
 flask-cors==4.0.0
+selenium==4.15.2
