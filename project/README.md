@@ -79,6 +79,8 @@ pip install flask selenium
 
 3. **端口冲突**: 如果 5000 端口被占用，可以修改 `server.py` 中的端口号。
 
+4. **仅限学习使用**: 本项目仅用于教学演示目的。Flask 服务器以调试模式运行（`debug=True`），不适合生产环境部署。在生产环境中应使用 WSGI 服务器（如 Gunicorn）并禁用调试模式。
+
 ## 测试账号
 
 - 用户名: `admin`
